@@ -1,5 +1,4 @@
 import Nav from "../components/Nav";
-import dynamic from "next/dynamic";
 
 export default function Home() {
   return (
@@ -16,8 +15,8 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-gray-200 text-sm text-center">
-            Describe your day, event, or how you're feeling at the moment and
-            let AI generate a gradient for you!
+            Describe your day, event, or how you&apos;re feeling at the moment
+            and let AI generate a gradient for you!
           </p>
         </main>
         <div className="w-full h-full max-w-7xl px-4 sm:px-12">
