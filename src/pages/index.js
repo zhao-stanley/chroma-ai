@@ -1,6 +1,8 @@
 import Nav from "../components/Nav";
+import { useState } from "react";
 
 export default function Home() {
+  const [text, setText] = useState();
   return (
     <>
       <div className="w-full h-full min-h-screen flex flex-col items-center bg-dark">
@@ -20,7 +22,12 @@ export default function Home() {
           </p>
         </main>
         <div className="w-full h-full max-w-7xl px-4 sm:px-12">
-          <textarea className="w-full min-h-[150px] max-h-[250px] border-2 border-[#171717] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear"></textarea>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="I got promoted at work today!"
+            className="w-full text-xs xl:text-sm placeholder:text-xs xl:placeholder:text-sm min-h-[150px] max-h-[250px] border-2 border-[#171717] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear"
+          ></textarea>
         </div>
       </div>
     </>
