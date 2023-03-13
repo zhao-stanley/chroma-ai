@@ -831,7 +831,6 @@ class Gradient {
    * Initializes the four section colors by retrieving them from css variables.
    */
   initGradientColors() {
-    console.log(this.colors);
     this.sectionColors = this.colors
       .map((color) => {
         let hex = color.trim();

@@ -82,9 +82,9 @@ export default function Home() {
               your mood
             </span>
           </h1>
-          <p className="text-gray-200 text-sm text-center">
-            Describe your day, event, or how you&apos;re feeling at the moment
-            and let AI generate a gradient for you!
+          <p className="text-gray-300 text-sm text-center">
+            Write about your day, the lyrics of your favorite song, or even a
+            random thought that popped into your head—AI will do the rest.
           </p>
         </main>
         <div className="w-full h-full max-w-7xl px-4 sm:px-12 flex flex-col gap-4">
@@ -93,7 +93,7 @@ export default function Home() {
             onChange={(e) => setText(e.target.value)}
             maxLength="200"
             placeholder="I got promoted at work today! I'm feeling so ecstatic right now, I could burst!"
-            className="w-full text-xs xl:text-sm placeholder:text-xs xl:placeholder:text-sm min-h-[150px] max-h-[250px] border-2 border-[#171717] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear"
+            className="w-full text-sm xl:text-base placeholder:text-sm xl:placeholder:text-base min-h-[150px] max-h-[250px] border-2 border-[#171717] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear"
           />
           <button
             onClick={(e) => generateGradient(e)}
