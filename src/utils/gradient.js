@@ -628,9 +628,7 @@ class Gradient {
         ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
         : ((this.minigl = new MiniGl(this.el, null, null, !0)),
           requestAnimationFrame(() => {
-            this.el &&
-              ((this.computedCanvasStyle = getComputedStyle(this.el)),
-              this.waitForCssVars());
+            this.el && this.init(), this.addIsLoadedClass();
           }));
     /*
           this.scrollObserver = await s.create(.1, !1),
@@ -803,32 +801,7 @@ class Gradient {
       window.addEventListener("resize", this.resize);
   }
   /*
-   * Waiting for the css variables to become available, usually on page load before we can continue.
-   * Using default colors assigned below if no variables have been found after maxCssVarRetries
-   */
-  waitForCssVars() {
-    if (
-      this.computedCanvasStyle &&
-      -1 !==
-        this.computedCanvasStyle
-          .getPropertyValue("--gradient-color-1")
-          .indexOf("#")
-    )
-      this.init(), this.addIsLoadedClass();
-    else {
-      if (
-        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
-      ) {
-        return (
-          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
-          void this.init()
-        );
-      }
-      requestAnimationFrame(() => this.waitForCssVars());
-    }
-  }
-  /*
-   * Initializes the four section colors by retrieving them from css variables.
+   * Initializes the four section colors by retrieving them from the generated colors.
    */
   initGradientColors() {
     this.sectionColors = this.colors

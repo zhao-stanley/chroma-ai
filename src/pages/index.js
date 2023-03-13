@@ -1,16 +1,12 @@
 import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { Gradient } from "../utils/gradient";
+import defaultGradient from "../utils/defaultGradient";
 
 export default function Home() {
   const [text, setText] = useState();
   const [loading, setLoading] = useState(false);
-  const [colors, setColors] = useState([
-    "#4CD4B0",
-    "#FFFCE6",
-    "#F24D16",
-    "#EDD834",
-  ]);
+  const [colors, setColors] = useState(defaultGradient());
 
   useEffect(() => {
     if (typeof window !== "undefined") {
