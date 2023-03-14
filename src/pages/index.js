@@ -2,6 +2,11 @@ import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { Gradient } from "../utils/gradient";
 import defaultGradient from "../utils/defaultGradient";
+import dynamic from "next/dynamic";
+
+const ColorPreview = dynamic(() => import("../components/ColorPreview"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [text, setText] = useState();
@@ -9,8 +14,6 @@ export default function Home() {
   const [colors, setColors] = useState(defaultGradient());
 
   let gradient = new Gradient();
-  console.log(gradient);
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       gradient.initGradient("#gradient-canvas", colors);
@@ -85,9 +88,31 @@ export default function Home() {
             random thought that popped into your head—AI will do the rest.
           </p>
         </main>
-        <div className="w-full h-full max-h-[500px] max-w-7xl px-4 sm:px-12 flex flex-col lg:flex-row gap-x-8 gap-y-10 mb-32">
+        <div className="w-full h-full max-w-7xl px-4 sm:px-12 flex flex-col items-center lg:flex-row gap-x-8 gap-y-10 pb-24">
           <section className="flex flex-col w-full h-full gap-4">
-            <button onClick={() => gradient.togglePlayPause()}>test</button>
+            <ul className="grid grid-cols-2 sm:grid-cols-4 w-full justify-around gap-4">
+              {colors.map((color, index) => (
+                <ColorPreview color={color} key={index} />
+              ))}
+            </ul>
+            <div className="flex flex-row w-full justify-around gap-4">
+              <button
+                className="text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-linear"
+                onClick={() => {
+                  gradient.play();
+                }}
+              >
+                Play
+              </button>
+              <button
+                className="text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-linear"
+                onClick={() => {
+                  gradient.pause();
+                }}
+              >
+                Pause
+              </button>
+            </div>
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -108,7 +133,7 @@ export default function Home() {
             id="gradient-canvas"
             className={`${
               loading && "brightness-50 animate-pulse"
-            } w-auto max-w-xl h-[300px] xl:h-[500px] rounded-lg transition ease-linear`}
+            } w-full lg:max-w-xl h-[300px] xl:h-[500px] rounded-lg transition ease-linear`}
             data-transition-in
           />
         </div>
