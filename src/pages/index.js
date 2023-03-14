@@ -8,9 +8,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [colors, setColors] = useState(defaultGradient());
 
+  let gradient = new Gradient();
+  console.log(gradient);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      let gradient = new Gradient();
       gradient.initGradient("#gradient-canvas", colors);
     }
   }, [colors]);
@@ -69,8 +71,8 @@ export default function Home() {
       <div className="w-full h-full min-h-screen flex flex-col items-center bg-dark">
         <Nav />
 
-        <main className="w-full h-full max-w-7xl flex flex-col gap-2 items-center px-4 py-12 sm:px-12 sm:py-24">
-          <h1 className="text-white font-bold text-4xl sm:text-6xl tracking-tighter text-center">
+        <main className="w-full h-full max-w-7xl flex flex-col gap-2 items-center px-4 pt-12 pb-6 lg:px-12 lg:py-24">
+          <h1 className="text-white font-bold text-4xl lg:text-5xl xl:text-6xl tracking-tighter text-center">
             Generate gradients <br />
             based on
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-purple-400 ease-linear transition hover:hue-rotate-[90deg] duration-300">
@@ -78,31 +80,35 @@ export default function Home() {
               your mood
             </span>
           </h1>
-          <p className="text-gray-300 text-sm text-center">
+          <p className="text-gray-300 text-base lg:text-lg max-w-xl tracking-tighter text-center">
             Write about your day, the lyrics of your favorite song, or even a
             random thought that popped into your head—AI will do the rest.
           </p>
         </main>
-        <div className="w-full h-full max-w-7xl px-4 sm:px-12 flex flex-col gap-4">
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            maxLength="200"
-            placeholder="I got promoted at work today! I'm feeling so ecstatic right now, I could burst!"
-            className="w-full text-sm xl:text-base placeholder:text-sm xl:placeholder:text-base min-h-[150px] max-h-[250px] border-2 border-[#171717] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear"
-          />
-          <button
-            onClick={(e) => generateGradient(e)}
-            disabled={loading}
-            className={`${
-              loading && "animate-pulse"
-            } disabled:brightness-90 disabled:cursor-not-allowed text-base xl:text-lg bg-gradient-to-br from-red-500 to-purple-500 hover:hue-rotate-[-90deg] duration-200 transition ease-linear px-3 py-2 rounded-xl font-bold text-white w-full whitespace-nowrap max-w-sm`}
-          >
-            {loading ? "Generating..." : "Generate gradient →"}
-          </button>
+        <div className="w-full h-full max-h-[500px] max-w-7xl px-4 sm:px-12 flex flex-col lg:flex-row gap-x-8 gap-y-10 mb-32">
+          <section className="flex flex-col w-full h-full gap-4">
+            <button onClick={() => gradient.togglePlayPause()}>test</button>
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              maxLength="500"
+              disabled={loading}
+              placeholder="Never gonna give you up, never gonna let you down, never gonna run around and desert you, never gonna make you cry, never gonna say goodbye, never gonna tell a lie and hurt you."
+              className={`disabled:brightness-50 disabled:cursor-not-allowed w-full placeholder:text-[#474747] text-base xl:text-lg placeholder:text-base xl:placeholder:text-lg min-h-[200px] max-h-[350px] xl:min-h-[300px] xl:max-h-[500px] border-2 border-[#343434] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear`}
+            />
+            <button
+              onClick={(e) => generateGradient(e)}
+              disabled={loading}
+              className={`disabled:brightness-90 disabled:animate-pulse disabled:cursor-not-allowed text-base xl:text-lg bg-white text-dark hover:brightness-75 duration-200 transition ease-linear px-3 py-2 rounded-xl font-medium w-full whitespace-nowrap`}
+            >
+              {loading ? "Generating..." : "Generate gradient →"}
+            </button>
+          </section>
           <canvas
             id="gradient-canvas"
-            className="w-full rounded-lg"
+            className={`${
+              loading && "brightness-50 animate-pulse"
+            } w-auto max-w-xl h-[300px] xl:h-[500px] rounded-lg transition ease-linear`}
             data-transition-in
           />
         </div>

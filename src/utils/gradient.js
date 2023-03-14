@@ -625,7 +625,7 @@ class Gradient {
         playing: true,
       }),
       document.querySelectorAll("canvas").length < 1
-        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        ? console.log("[ERROR] Canvas did not load/was not found.")
         : ((this.minigl = new MiniGl(this.el, null, null, !0)),
           requestAnimationFrame(() => {
             this.el && this.init(), this.addIsLoadedClass();
