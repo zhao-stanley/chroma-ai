@@ -15,7 +15,7 @@ export default function ColorPreview({ color }) {
     >
       <div
         style={{ backgroundColor: color }}
-        className={`w-6 h-6 flex flex-shrink-0 lg:w-4 lg:h-4 xl:w-6 xl:h-6 rounded-full`}
+        className={`w-6 h-6 flex flex-shrink-0 lg:w-4 lg:h-4 xl:w-6 xl:h-6 rounded-full border-2 border-[#343434]`}
       />
       <span className="text-white font-semibold text-sm">
         {copied ? "Copied!" : color.toUpperCase()}
