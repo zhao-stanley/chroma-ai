@@ -1,7 +1,7 @@
 import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { Gradient } from "../utils/gradient";
-import defaultGradient from "../utils/defaultGradient";
+import { getRandomGradient } from "../utils/defaultGradient";
 import dynamic from "next/dynamic";
 
 const ColorPreview = dynamic(() => import("../components/ColorPreview"), {
@@ -9,9 +9,9 @@ const ColorPreview = dynamic(() => import("../components/ColorPreview"), {
 });
 
 export default function Home() {
-  const [text, setText] = useState();
+  const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [colors, setColors] = useState(defaultGradient());
+  const [colors, setColors] = useState(getRandomGradient());
 
   let gradient = new Gradient();
   useEffect(() => {
@@ -98,16 +98,10 @@ export default function Home() {
             </ul>
             <div className="flex flex-row w-full justify-around gap-4">
               <button
-                className="text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-linear"
-                onClick={() => gradient.play()}
+                className="text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-linear active:scale-95"
+                onClick={() => setColors(getRandomGradient())}
               >
-                Play
-              </button>
-              <button
-                className="text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-linear"
-                onClick={() => gradient.pause()}
-              >
-                Pause
+                Cycle Preset Gradients
               </button>
             </div>
             <textarea
@@ -116,7 +110,7 @@ export default function Home() {
               maxLength="500"
               disabled={loading}
               placeholder="The more context you provide, the more accurate the AI's response will likely be."
-              className={`disabled:brightness-50 disabled:cursor-not-allowed w-full placeholder:text-[#474747] text-base xl:text-lg placeholder:text-base xl:placeholder:text-lg min-h-[200px] max-h-[350px] xl:min-h-[300px] xl:max-h-[500px] border-2 border-[#343434] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear`}
+              className={`disabled:brightness-50 disabled:cursor-not-allowed w-full placeholder:text-[#656565] text-base xl:text-lg placeholder:text-base xl:placeholder:text-lg min-h-[200px] max-h-[350px] xl:min-h-[300px] xl:max-h-[500px] border-2 border-[#343434] rounded-xl text-white p-2 bg-dark outline-none focus-within:border-purple-400 transition ease-linear`}
             />
             <button
               onClick={(e) => generateGradient(e)}
@@ -127,6 +121,11 @@ export default function Home() {
             </button>
           </section>
           <canvas
+            onClick={() => {
+              var canvas = document.querySelector("#gradient-canvas");
+              var image = canvas.toDataURL("image/png");
+              console.log(image);
+            }}
             id="gradient-canvas"
             className={`${
               loading && "brightness-50 animate-pulse"
