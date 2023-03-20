@@ -5,6 +5,7 @@ export default function ColorPreview({ color }) {
   return (
     <li
       className="flex flex-row gap-2 justify-center items-center hover:brightness-75 transition ease-linear cursor-pointer"
+      title="Click to copy color"
       onClick={() => {
         navigator.clipboard.writeText(color);
         setCopied(true);

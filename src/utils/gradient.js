@@ -33,6 +33,7 @@ class MiniGl {
     (_miniGl.canvas = canvas),
       (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
         antialias: true,
+        preserveDrawingBuffer: true,
       })),
       (_miniGl.meshes = []);
     const context = _miniGl.gl;
@@ -431,7 +432,7 @@ class MiniGl {
       }),
     };
   }
-  setSize(e = 640, t = 480) {
+  setSize(e = 500, t = 500) {
     (this.width = e),
       (this.height = t),
       (this.canvas.width = e),
@@ -547,7 +548,7 @@ class Gradient {
         (this.isScrolling = !1), this.isIntersecting && this.play();
       }),
       e(this, "resize", () => {
-        (this.width = window.innerWidth),
+        ((this.width = 750), (this.height = 750)),
           this.minigl.setSize(this.width, this.height),
           this.minigl.setOrthographicCamera(),
           (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),

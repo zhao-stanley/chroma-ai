@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Gradient } from "../utils/gradient";
 import { getRandomGradient } from "../utils/defaultGradient";
 import dynamic from "next/dynamic";
+import Github from "../components/Github";
 
 const ColorPreview = dynamic(() => import("../components/ColorPreview"), {
   ssr: false,
@@ -75,19 +76,23 @@ export default function Home() {
       <div className="w-full h-full min-h-screen flex flex-col items-center bg-dark">
         <Nav />
 
-        <main className="w-full h-full max-w-7xl flex flex-col gap-2 items-center px-4 pt-12 pb-6 lg:px-12 lg:py-24">
-          <h1 className="text-white font-bold text-4xl lg:text-5xl xl:text-6xl tracking-tighter text-center">
-            Generate gradients <br />
-            based on
-            <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-purple-400 ease-linear transition hover:hue-rotate-[90deg] duration-300">
-              {" "}
-              your mood
-            </span>
-          </h1>
-          <p className="text-gray-300 text-base lg:text-lg max-w-xl tracking-tighter text-center">
-            Write about your day, the lyrics of your favorite song, or even a
-            random thought that popped into your head—AI will do the rest.
-          </p>
+        <main className="w-full h-full max-w-7xl flex flex-col gap-8 items-center px-4 pt-12 pb-6 lg:px-12 lg:py-24">
+          <div className="flex flex-col gap-2">
+            <h1 className="text-white font-bold text-4xl lg:text-5xl xl:text-6xl tracking-tighter text-center">
+              Generate gradients <br />
+              based on
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-purple-400 ease-linear transition hover:hue-rotate-[90deg] duration-300">
+                {" "}
+                your mood
+              </span>
+            </h1>
+            <p className="text-gray-300 text-base lg:text-lg max-w-xl tracking-tighter text-center">
+              Write about how your current mood, the lyrics of your favorite
+              song, or even a random thought that popped into your head—AI will
+              do the rest.
+            </p>
+          </div>
+          <Github />
         </main>
         <div className="w-full h-full max-w-7xl px-4 sm:px-12 flex flex-col items-center lg:flex-row gap-x-8 gap-y-10 pb-24">
           <section className="flex flex-col w-full h-full gap-4">
@@ -98,10 +103,62 @@ export default function Home() {
             </ul>
             <div className="flex flex-row w-full justify-around gap-4">
               <button
-                className="text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-linear active:scale-95"
+                title="Cycle through preset gradients"
+                className="flex items-center justify-center gap-2 disabled:brightness-90 disabled:animate-pulse disabled:cursor-not-allowed disabled:active:scale-100 text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-in-out duration-300 active:scale-95"
+                disabled={loading}
                 onClick={() => setColors(getRandomGradient())}
               >
-                Cycle Preset Gradients
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-auto"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                  />
+                </svg>
+                Cycle Presets
+              </button>
+              <button
+                title="Screenshot and Save Gradient"
+                className="flex items-center justify-center gap-2 disabled:brightness-90 disabled:animate-pulse disabled:cursor-not-allowed disabled:active:scale-100 text-white w-full py-2 border-2 border-[#343434] rounded-lg hover:brightness-75 transition ease-in-out duration-300 active:scale-95"
+                disabled={loading}
+                onClick={() => {
+                  let canvas = document.querySelector("#gradient-canvas");
+                  let image = canvas.toDataURL("image/jpeg");
+                  let a = document.createElement("a");
+                  a.href = image;
+                  a.download = "gradient.jpg";
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-auto"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
+                  />
+                </svg>
+                Screenshot
               </button>
             </div>
             <textarea
@@ -121,11 +178,6 @@ export default function Home() {
             </button>
           </section>
           <canvas
-            onClick={() => {
-              var canvas = document.querySelector("#gradient-canvas");
-              var image = canvas.toDataURL("image/png");
-              console.log(image);
-            }}
             id="gradient-canvas"
             className={`${
               loading && "brightness-50 animate-pulse"
