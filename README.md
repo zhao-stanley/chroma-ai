@@ -1,5 +1,4 @@
 ![image](https://user-images.githubusercontent.com/101726102/226490421-d9748694-297e-4af7-b908-bbe06a630bd4.png)
-Write about how your current mood, the lyrics of your favorite song, or even a random thought that popped into your head—AI will do the rest.
 
 ## Getting Started
 
