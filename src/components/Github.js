@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Github() {
   return (
     <Link
-      className="flex flex-row items-center text-sm gap-2 rounded-2xl px-4 py-2 bg-white hover:shadow-purple-400/75 shadow-lg transition ease-in-out md:outline md:outline-transparent md:hover:outline-purple-400 md:hover:scale-105 md:active:scale-95 font-semibold tracking-tighter"
+      className="flex flex-row w-fit items-center text-sm gap-2 rounded-xl px-4 py-2 bg-white hover:shadow-purple-400/75 shadow-lg transition ease-in-out md:outline md:outline-transparent md:hover:outline-purple-400 md:hover:scale-105 md:active:scale-95 font-semibold tracking-tighter"
       href={"https://github.com/zhao-stanley/chroma-ai"}
       target="_blank"
     >

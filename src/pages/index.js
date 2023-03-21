@@ -4,6 +4,7 @@ import { Gradient } from "../utils/gradient";
 import { getRandomGradient } from "../utils/defaultGradient";
 import dynamic from "next/dynamic";
 import Github from "../components/Github";
+import ProductHunt from "../components/ProductHunt";
 
 const ColorPreview = dynamic(() => import("../components/ColorPreview"), {
   ssr: false,
@@ -91,7 +92,10 @@ export default function Home() {
               will do the rest.
             </p>
           </div>
-          <Github />
+          <div className="flex flex-col items-center gap-4">
+            <ProductHunt />
+            <Github />
+          </div>
         </main>
         <div className="w-full h-full max-w-7xl px-4 sm:px-12 flex flex-col items-center lg:flex-row gap-x-8 gap-y-10 pb-24">
           <section className="flex flex-col w-full h-full gap-4">
