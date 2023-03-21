@@ -88,8 +88,8 @@ export default function Home() {
             </h1>
             <p className="text-gray-300 text-base lg:text-lg max-w-xl tracking-tighter text-center">
               Write about how your current mood, the lyrics of your favorite
-              song, or even a random thought that popped into your head—AI will
-              do the rest.
+              song, or even a random thought that popped into your head — AI
+              will do the rest.
             </p>
           </div>
           <Github />
