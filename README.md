@@ -25,3 +25,4 @@ This app uses OpenAI's `gpt-3.5-turbo` model and Vercel Edge functions with stre
 #### Credits
 
 - [Kevin Hufnagl for Stripe Gradient animation](https://kevinhufnagl.com/)
+- [Hassan El Mghari for Edge Function streaming](https://github.com/nutlope)
