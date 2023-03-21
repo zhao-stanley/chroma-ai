@@ -1,5 +1,5 @@
 import Nav from "../components/Nav";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Gradient } from "../utils/gradient";
 import { getRandomGradient } from "../utils/defaultGradient";
 import dynamic from "next/dynamic";
@@ -13,6 +13,7 @@ export default function Home() {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [colors, setColors] = useState(getRandomGradient());
+  const canvasRef = useRef(null);
 
   let gradient = new Gradient();
   useEffect(() => {
@@ -65,9 +66,9 @@ export default function Home() {
         ? generatedColors.split(", ")
         : generatedColors.split(",")
     );
-    // if (captionsRef.current !== null) {
-    //   captionsRef.current.scrollIntoView({ behavior: "smooth" });
-    // }
+    if (canvasRef.current !== null) {
+      canvasRef.current.scrollIntoView({ behavior: "smooth" });
+    }
     setLoading(false);
   }
 
@@ -178,6 +179,7 @@ export default function Home() {
             </button>
           </section>
           <canvas
+            ref={canvasRef}
             id="gradient-canvas"
             className={`${
               loading && "brightness-50 animate-pulse"
