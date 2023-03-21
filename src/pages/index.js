@@ -61,11 +61,9 @@ export default function Home() {
       const chunkValue = decoder.decode(value);
       generatedColors += chunkValue;
     }
-    setColors(
-      generatedColors.includes(" ")
-        ? generatedColors.split(", ")
-        : generatedColors.split(",")
-    );
+    let regularExpression = /#(?:[0-9a-fA-F]{3}){1,2}/g;
+    let hexCodes = generatedColors.match(regularExpression);
+    setColors(hexCodes);
     if (canvasRef.current !== null) {
       canvasRef.current.scrollIntoView({ behavior: "smooth" });
     }
