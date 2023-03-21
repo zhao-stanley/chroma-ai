@@ -1,5 +1,7 @@
 ![image](https://user-images.githubusercontent.com/101726102/226490421-d9748694-297e-4af7-b908-bbe06a630bd4.png)
 
+<a href="https://www.producthunt.com/posts/chroma-ai?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-chroma&#0045;ai" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=385012&theme=dark" alt="Chroma&#0032;AI - Generate&#0032;gradients&#0032;based&#0032;on&#0032;your&#0032;mood&#0032;using&#0032;AI | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
 ## Getting Started
 
 You will need a `OPENAI_API_KEY` in your `.env` file to run this locally.
