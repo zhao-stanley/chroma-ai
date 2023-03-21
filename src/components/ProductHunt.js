@@ -10,6 +10,7 @@ export default function ProductHunt() {
       <img
         src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=385012&theme=dark"
         alt="Chroma&#0032;AI - Generate&#0032;gradients&#0032;based&#0032;on&#0032;your&#0032;mood&#0032;using&#0032;AI | Product Hunt"
+        draggable="false"
         className="w-full h-auto"
       />
     </Link>
