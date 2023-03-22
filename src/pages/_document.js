@@ -7,14 +7,14 @@ export default function Document() {
         <meta name="title" content="Chroma AI" />
         <meta
           name="description"
-          content="Write about how your current mood, the lyrics of your favorite song, or even a random thought that popped into your head — AI will do the rest."
+          content="Write about your current mood, the lyrics of your favorite song, or even a random thought that popped into your head — AI will do the rest."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://chroma.szhao.dev/" />
         <meta property="og:title" content="Chroma AI" />
         <meta
           property="og:description"
-          content="Write about how your current mood, the lyrics of your favorite song, or even a random thought that popped into your head — AI will do the rest."
+          content="Write about your current mood, the lyrics of your favorite song, or even a random thought that popped into your head — AI will do the rest."
         />
         <meta
           property="og:image"
@@ -25,7 +25,7 @@ export default function Document() {
         <meta property="twitter:title" content="Chroma AI" />
         <meta
           property="twitter:description"
-          content="Write about how your current mood, the lyrics of your favorite song, or even a random thought that popped into your head — AI will do the rest."
+          content="Write about your current mood, the lyrics of your favorite song, or even a random thought that popped into your head — AI will do the rest."
         />
         <meta
           property="twitter:image"

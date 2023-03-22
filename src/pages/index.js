@@ -87,9 +87,9 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-gray-300 text-base lg:text-lg max-w-xl tracking-tighter text-center">
-              Write about how your current mood, the lyrics of your favorite
-              song, or even a random thought that popped into your head — AI
-              will do the rest.
+              Write about your current mood, the lyrics of your favorite song,
+              or even a random thought that popped into your head — AI will do
+              the rest.
             </p>
           </div>
           <div className="flex flex-col items-center gap-4">
