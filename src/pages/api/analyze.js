@@ -1,15 +1,15 @@
 import { OpenAIStream } from "../../utils/OpenAIStream";
 
-if (!process.env.OPENAI_API_KEY) {
-  throw new Error("Missing env var from OpenAI");
-}
-
 export const config = {
   runtime: "edge",
 };
 
 const handler = async (req) => {
-  const { prompt } = await req.json();
+  const { prompt, key } = await req.json();
+
+  if (!key) {
+    throw new Error("Missing OpenAI API key");
+  }
 
   if (!prompt) {
     return new Response("No prompt in the request", { status: 400 });
@@ -34,7 +34,7 @@ const handler = async (req) => {
     n: 1,
   };
 
-  const stream = await OpenAIStream(payload);
+  const stream = await OpenAIStream(payload, key);
   return new Response(stream);
 };
 
