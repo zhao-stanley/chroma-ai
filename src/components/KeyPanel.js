@@ -75,7 +75,7 @@ export default function KeyPanel({ openKeypanel, setOpenKeypanel }) {
                       <Link
                         href="https://platform.openai.com/account/api-keys"
                         target="_blank"
-                        className="text-purple-400 focus:outline-none"
+                        className="text-purple-400 focus:outline-none font-medium"
                       >
                         Get API key
                       </Link>
