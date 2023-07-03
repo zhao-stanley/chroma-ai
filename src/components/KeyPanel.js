@@ -65,7 +65,8 @@ export default function KeyPanel({ openKeypanel, setOpenKeypanel }) {
                     Enter your OpenAI API Key
                   </Dialog.Title>
                   <p className="text-sm text-gray-400 py-1">
-                    Your API key is stored only to your browser's local storage.
+                    Your API key is stored only to your browser&apos;s local
+                    storage.
                   </p>
 
                   <div className="py-2 flex flex-col">
