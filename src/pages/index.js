@@ -5,6 +5,7 @@ import { getRandomGradient } from "../utils/defaultGradient";
 import dynamic from "next/dynamic";
 import Github from "../components/Github";
 import ProductHunt from "../components/ProductHunt";
+import { createParser } from "eventsource-parser";
 
 const KeyPanel = dynamic(() => import("../components/KeyPanel"), {
   ssr: false,
@@ -60,20 +61,30 @@ export default function Home() {
       return;
     }
 
-    // let newBlurb = randomBlurb();
-    // setBlurb(newBlurb);
+    let generatedColors = "";
+    const onParseGPT = (event) => {
+      if (event.type === "event") {
+        const data = event.data;
+        try {
+          const text = JSON.parse(data).text ?? "";
+          generatedColors += text;
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
 
     const reader = data.getReader();
     const decoder = new TextDecoder();
+    const parser = createParser(onParseGPT);
     let done = false;
-
-    let generatedColors = "";
     while (!done) {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      generatedColors += chunkValue;
+      parser.feed(chunkValue);
     }
+
     let regularExpression = /#(?:[0-9a-fA-F]{3}){1,2}/g;
     let hexCodes = generatedColors.match(regularExpression);
     setColors(hexCodes);
